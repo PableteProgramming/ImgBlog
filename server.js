@@ -1,4 +1,5 @@
 const express= require('express')
+const fs= require('fs')
 const uploadsRouter= require('./routes/uploads')
 
 const app= express()
@@ -10,7 +11,26 @@ app.use('/uploads',uploadsRouter)
 
 
 app.get("/",(req,res) => {
-    res.send("Working")
+    try{
+        let content= fs.readdirSync("public/uploads")
+        let imgs =["lul"]
+        imgs=[]
+        content.forEach(file=>{
+            img={
+                src:"uploads/"+file,
+                alt:file
+            }
+            imgs.push(img)
+        })
+    
+        res.render("index",{
+            imgs:imgs
+        })
+    }
+    catch(e){
+        console.log(e)
+    }
+    
 })
 
 
