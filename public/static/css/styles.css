@@ -1,6 +1,10 @@
 .container{
     width:90%;
     margin:auto;
+    
+}
+
+.main{
     border: 10px gray solid;
     border-radius: 10px;
     padding-left: 10px;
@@ -29,6 +33,19 @@
 
 .title{
     text-align: center;
+}
+
+.upfile-form{
+    display:flex;
+    flex-direction: column;
+    margin-bottom:10px;
+}
+
+.upfile-container{
+    border: 10px gray solid;
+    border-radius: 10px;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 @media (max-width: 700px){

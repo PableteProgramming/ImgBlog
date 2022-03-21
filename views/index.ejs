@@ -9,13 +9,16 @@
 </head>
 <body>
     <div class="container">
-        <p class="title">Uploaded Images</p>
-        <div class="grid">
-        <% imgs.forEach(img =>{ %>
-            <div class="cell">
-                <img src="<%= img.src %>" alt="<%= img.alt %>">
+        <div class="main">
+            <p class="title">Uploaded Images</p>
+            <div class="grid">
+            <% imgs.forEach(img =>{ %>
+                <div class="cell">
+                    <img src="<%= img.src %>" alt="<%= img.alt %>">
+                </div>
+            <% }) %>
             </div>
-        <% }) %>
+            <a href="/upload">Upload image</a>
         </div>
     </div>
 </body>
