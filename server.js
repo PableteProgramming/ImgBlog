@@ -1,12 +1,15 @@
 const express= require('express')
 const fs= require('fs')
 const uploadsRouter= require('./routes/uploads')
+const serveStatic= require('serve-static')
+
 
 const app= express()
 
 app.set('view engine', 'ejs')
 
 app.use('/uploads',uploadsRouter)
+app.use(serveStatic('public'))
 
 
 
