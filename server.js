@@ -3,6 +3,7 @@ const fs= require('fs')
 const uploadsRouter= require('./routes/uploads')
 const serveStatic= require('serve-static')
 const fileUpload = require('express-fileupload');
+const path= require('path')
 
 
 const app= express()
@@ -43,12 +44,25 @@ app.get("/upload",(req,res)=>{
 
 app.post("/upload",(req,res)=>{
     let upfile= req.files.upimage;
-    updest= "public/uploads/"+upfile.name;
+    let extension= path.extname(upfile.name);
+    let filename=path.basename(upfile.name,extension);
+    let pathh= "public/uploads/";
+    let updest= pathh+filename+extension;
+    let done=false;
+    let index=1;
+    while(done===false){
+        if(fs.existsSync(updest)){
+            updest= pathh+filename+index+extension;
+            index=index+1;
+        }else{
+            done=true;
+        }
+    }
     upfile.mv(updest, (err) => {
         if (err) { 
             return res.status(500).send(err); 
         }
-        res.send("File uploaded!");
+        res.redirect("/");
     });
 })
 
